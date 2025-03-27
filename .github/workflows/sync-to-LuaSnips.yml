@@ -1,0 +1,21 @@
+name: Sync with upstream
+
+on:
+  schedule:
+    - cron: 0 0 * * *  # runs daily at midnight
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Sync with upstream
+        run: |
+          git remote add upstream https://github.com/${GITHUB_REPOSITORY_OWNER}/LuaSnip.git
+          git fetch upstream
+          git merge upstream/master
+          git push origin master
