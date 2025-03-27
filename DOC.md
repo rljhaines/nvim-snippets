@@ -292,7 +292,7 @@ s({trig="trigger"}, {})
     end
     ```
     The predefined engines are defined in
-    [`trig_engines.lua`](https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/nodes/util/trig_engines.lua),
+    [`trig_engines.lua`](https://github.com/rljhaines/nvim-snippets/blob/master/lua/luasnip/nodes/util/trig_engines.lua),
     read it for more examples.
 
   - `trigEngineOpts`: `table<string, any>`, options for the used `trigEngine`.  
@@ -351,7 +351,7 @@ s({trig="trigger"}, {})
 
       A good example for the usage of `resolveExpandParams` can be found in
       the implementation of
-      [`postfix`](https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/extras/postfix.lua).
+      [`postfix`](https://github.com/rljhaines/nvim-snippets/blob/master/lua/luasnip/extras/postfix.lua).
   - `condition`: `fn(line_to_cursor, matched_trigger, captures) -> bool`, where
       - `line_to_cursor`: `string`, the line up to the cursor.
       - `matched_trigger`: `string`, the fully matched trigger (can be retrieved
@@ -1060,7 +1060,7 @@ If no content is defined for a key, it defaults to the empty `insertNode`.
 
 An important-to-know limitation of `restoreNode` is that, for a given key, only
 one may be visible at a time. See
-[this issue](https://github.com/L3MON4D3/LuaSnip/issues/234) for details.
+[this issue](https://github.com/rljhaines/nvim-snippets/issues/234) for details.
 
 The `restoreNode` is especially useful for storing input across updates of a
 `dynamicNode`. Consider this:
@@ -1617,7 +1617,7 @@ combined with each other into logical expressions:
 - `c1 % c2 -> c1 xnor(==) c2`: This decision may seem weird, considering how
   there is an overload for the `==`-operator. Unfortunately, it's not possible
   to use this for our purposes (some info
-  [here](https://github.com/L3MON4D3/LuaSnip/pull/612#issuecomment-1264487743)),
+  [here](https://github.com/rljhaines/nvim-snippets/pull/612#issuecomment-1264487743)),
   so we decided to make use of a more obscure symbol (which will hopefully avoid
   false assumptions about its meaning).
 
@@ -2049,7 +2049,7 @@ ts_post({
 ```
 <!-- panvimdoc-ignore-start -->
 
-![tree-sitter-postfix-2](https://github.com/L3MON4D3/LuaSnip/assets/41961280/37868d75-3240-4a47-bd80-5e8666778b71)
+![tree-sitter-postfix-2](https://github.com/rljhaines/nvim-snippets/assets/41961280/37868d75-3240-4a47-bd80-5e8666778b71)
 
 <!-- panvimdoc-ignore-end -->
 
@@ -2429,7 +2429,7 @@ install_jsregexp` in the repository root.
 
 This process can be automated by `packer.nvim`:
 ```lua
-use { "L3MON4D3/LuaSnip", run = "make install_jsregexp" }
+use { "rljhaines/nvim-snippets", run = "make install_jsregexp" }
 ```
 
 If this fails, first open an issue :P, and then try installing the
@@ -2496,7 +2496,7 @@ You can also add your own variables by using the `ls.env_namespace(name, opts)` 
     * `multiline_vars`: `(fn(name:string)->bool)|map[string, bool]|bool|string[]` Says if certain vars are a table or just a string,
         can be a function that get's the name of the var and returns true if the var is a key,
         a list of vars that are tables or a boolean for the full namespace, it's false by default. Refer to
-        [issue#510](https://github.com/L3MON4D3/LuaSnip/issues/510#issuecomment-1209333698) for more information.
+        [issue#510](https://github.com/rljhaines/nvim-snippets/issues/510#issuecomment-1209333698) for more information.
 
 The four fields of `opts` are optional but you need to provide either `init` or  `vars`, and `eager` can't be without `vars`.
 Also, you can't use namespaces that override default vars.
@@ -2928,7 +2928,7 @@ these files.
 By default, the names from [`luasnip.config.snip_env`][snip-env-src] will be used, but it's
 possible to customize them by setting `snip_env` in `setup`.  
 
-[snip-env-src]: https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/config.lua#L22-L48
+[snip-env-src]: https://github.com/rljhaines/nvim-snippets/blob/master/lua/luasnip/config.lua#L22-L48
 
 **Example**:
 
@@ -3346,7 +3346,7 @@ s({trig = "(%d)", regTrig = true, docstring = "repeatmerepeatmerepeatme"}, {
 })
 ```
 
-Refer to [#515](https://github.com/L3MON4D3/LuaSnip/pull/515) for a
+Refer to [#515](https://github.com/rljhaines/nvim-snippets/pull/515) for a
 better example to understand `docTrig` and `docstring`.
 
 # Docstring-Cache
@@ -3587,7 +3587,7 @@ These are the settings you can provide to `luasnip.setup()`:
   `choiceNode` containing the nested snippet and an empty `insertNode` for
   nested placeholders (`"${1: ${2: this is nested}}"`). For an example
   (behavior more similar to VSCode), check
-  [here](https://github.com/L3MON4D3/LuaSnip/wiki/Nice-Configs#imitate-vscodes-behaviour-for-nested-placeholders)
+  [here](https://github.com/rljhaines/nvim-snippets/wiki/Nice-Configs#imitate-vscodes-behaviour-for-nested-placeholders)
 - `ft_func`: Source of possible filetypes for snippets. Defaults to a function,
   which returns `vim.split(vim.bo.filetype, ".", true)`, but check
   [filetype_functions](lua/luasnip/extras/filetype_functions.lua) or the
@@ -3698,7 +3698,7 @@ These are the settings you can provide to `luasnip.setup()`:
   was defined after the normal snippet `s`, then adding `priority=1001` to the
   `postfix` snippet will cause it to expand as if it were defined before
   the normal snippet `s`. Snippet `priority` is discussed in the
-   [Snippets section](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#snippets) of the documentation.
+   [Snippets section](https://github.com/rljhaines/nvim-snippets/blob/master/DOC.md#snippets) of the documentation.
 
 # API
 
